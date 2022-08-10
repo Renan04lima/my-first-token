@@ -1,5 +1,8 @@
 {
   "name": "first-token",
+  "engines": {
+    "node": "16"
+  },
   "version": "1.0.0",
   "description": "Token baseado na rede Ethereum com padrão ERC20/BEP20 que pode rodar tanto na rede Ethereum principal, quanto na rede da Binance Smart Chain, e ainda ser transacionado em corretoras descentralizadas.",
   "main": "index.js",
@@ -16,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/Renan04lima/my-first-token/issues"
   },
-  "homepage": "https://github.com/Renan04lima/my-first-token#readme"
+  "homepage": "https://github.com/Renan04lima/my-first-token#readme",
+  "dependencies": {
+    "solc": "^0.8.16"
+  }
 }
