@@ -52,7 +52,7 @@ contract MyToken is BEP20 {
     string public symbol = "MT";
     string public name = "MyToken";
 
-    address private _tokenOwner; 
+    address private _tokenOwner;
     // estrutura de chave e valor
     mapping(address => uint256) private _balance;
     // ex: minha carteira => carteira e valor da transação
@@ -77,6 +77,8 @@ contract MyToken is BEP20 {
         external
         returns (bool)
     {
+        require(amount <= _balance[msg.sender], "Nao tem saldo");
+
         _balance[msg.sender] -= amount;
         _balance[recipient] += amount;
 
