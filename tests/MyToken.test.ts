@@ -2,15 +2,30 @@ import assert from 'assert'
 import ganache from 'ganache'
 import Web3 from 'web3'
 import { provider } from 'web3-core'
+import { Contract } from 'web3-eth-contract'
+
+import { abi, bytecode } from '../src/compile'
 
 const web3 = new Web3(ganache.provider() as provider)
-// https://www.npmjs.com/package/web3
-// https://trufflesuite.com/docs/ganache/quickstart/   <-- https://www.npmjs.com/package/ganache-cli
+
+let accounts: string[]
+let myToken: Contract
 
 beforeEach(async () => {
-  await web3.eth.getAccounts()
+  accounts = await web3.eth.getAccounts()
+
+  myToken = await new web3.eth.Contract(abi)
+    .deploy({
+      data: bytecode
+    })
+    .send({
+      from: accounts[0],
+      gas: 1000000
+    })
 })
 
-it('should', () => {
-  assert.equal(1,1)
+describe('MyToken', () => {
+  it('deploys a contract', () => {
+    assert.ok(myToken.options.address)
+  })
 })
